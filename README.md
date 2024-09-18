@@ -15,3 +15,7 @@ Este repositorio contiene el código y los archivos relacionados con el proyecto
 - `scripts/`: Contiene el script PySpark utilizado para las transformaciones de datos.
 - `powerbi/`: Archivo `.pbix` con el dashboard interactivo de Power BI.
 - `video/`: Video explicativo del proyecto.
+
+## Notas
+- He comentado que uso la curva ROC, pero finalmente no la he incluido.
+- En el notebook subido, el primero, he tenido que eliminar completamente la línea donde está la conexión a Azure, ya que GitHub no me permitía subirla
