@@ -20,3 +20,4 @@ El documento principal del TFM se encuentra en la carpeta report
 ## Notas
 - He comentado que uso la curva ROC, pero finalmente no la he incluido.
 - En el notebook subido, el primero, he tenido que eliminar completamente la línea donde está la conexión a Azure, ya que GitHub no me permitía subirla
+- En el esquema aparece Azure ML, pero al final tuve que descartarlo debido a la cuenta de estudiante y la limitación de vCores
