@@ -3,9 +3,9 @@ from pyspark.sql.functions import col, sum, avg, countDistinct
 # Definir variables
 storage_account_name = 'dlsmde01magac'
 data_lake_container = f'abfss://datalake@{storage_account_name}.dfs.core.windows.net'
-bronze_folder = 'bronze'  # Carpeta de ingesta de datos (raw)
-silver_folder = 'silver'  # Carpeta donde se almacenarán las tablas Delta
-gold_folder = 'gold'  # Carpeta donde se almacenarán los resultados en la capa Gold
+bronze_folder = 'bronze' 
+silver_folder = 'silver'  
+gold_folder = 'gold'  
 
 # Función para procesar tablas desde la capa Bronze a Silver
 def process_table(table_name):
@@ -13,7 +13,7 @@ def process_table(table_name):
     source_path = f"{data_lake_container}/{bronze_folder}/{source_wildcard}"
     delta_table_path = f"{data_lake_container}/{silver_folder}/{table_name}"
 
-    # Leer archivo(s) en DataFrame de Spark usando el delimitador correcto (coma) y manejando comillas
+    # Leer archivo en DataFrame de Spark
     sdf = spark.read.format('csv') \
         .option("recursiveFileLookup", "true") \
         .option("header", "true") \
@@ -21,7 +21,7 @@ def process_table(table_name):
         .option("quote", '"') \
         .load(source_path)
 
-    # Eliminar duplicados basado en la columna "ID_Producto"
+    # Eliminar duplicados
     if "ID_Producto" in sdf.columns:
         sdf = sdf.dropDuplicates(["ID_Producto"])
 
@@ -33,10 +33,14 @@ process_table("InventarioProductos")
 process_table("SoporteTecnico")
 process_table("Ventas")
 
+
+
 # Definir paths para cada tabla en la capa Silver
 ventas_silver_path = f"{data_lake_container}/{silver_folder}/Ventas"
 soporte_silver_path = f"{data_lake_container}/{silver_folder}/SoporteTecnico"
 inventario_silver_path = f"{data_lake_container}/{silver_folder}/InventarioProductos"
+
+
 
 # Leer las tablas en formato Delta desde la capa Silver
 ventas_df = spark.read.format("delta").load(ventas_silver_path)
