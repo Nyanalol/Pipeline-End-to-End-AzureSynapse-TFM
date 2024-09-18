@@ -9,6 +9,7 @@ Este repositorio contiene el código y los archivos relacionados con el proyecto
 
 ## Estructura del repositorio
 
+El documento principal del TFM se encuentra en la carpeta report
 
 - `report/`: Documento PDF con el informe final del TFM.
 - `notebooks/`: Contiene los Jupyter Notebooks utilizados para la transformación de datos y la implementación del modelo de Machine Learning.
